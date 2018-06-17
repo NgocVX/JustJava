@@ -1,9 +1,11 @@
 package com.ngoc_vx.justjava;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,15 +24,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         displayQuantity(quantity);
-        //displayMessage("Free");
     }
 
     /**
      * This method is called when the order button is clicked.
      */
+    @SuppressLint("StringFormatInvalid")
     public void submitOrder(View view) {
         EditText nameEditText = findViewById(R.id.name_editText);
-        Editable name =  nameEditText.getText();
+        //Editable name = nameEditText.getText();
+        String name = nameEditText.getText().toString();
         //Log.v("MainActivity", "Name: " +name);
 
         CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
@@ -41,8 +44,24 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckbox.isChecked();
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
-        String priceMessage = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
-        displayMessage(priceMessage);
+        String orderSummary = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
+        displayMessage(orderSummary);
+
+        // Array of all "To" recipient email addresses.
+        String[] emailsTo = {"coffeeno1@gmail.com", "abc@gmail.com"};
+
+        // create intent to email app
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+
+
+        intent.putExtra(Intent.EXTRA_EMAIL, emailsTo);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject, name));
+        intent.putExtra(Intent.EXTRA_TEXT, orderSummary);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
@@ -52,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void increment(View view) {
-        if (quantity >= 100){
+        if (quantity >= 100) {
             // show error message
-            Toast.makeText(this, "You can not oder over 100 coffees", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.over_100_cups), Toast.LENGTH_SHORT).show();
             // Exit this method early because there's nothing left to do
             return;
         }
@@ -71,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
         if (quantity < 2) {
             // show error message
-            Toast.makeText(this, "You cannot have less than 1 coffee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.less_1_cup), Toast.LENGTH_SHORT).show();
             // Exit this method early because there's nothing left to do
             return;
         }
@@ -87,23 +106,26 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
+    /*
 
-    /*  *//**
-     * This method displays the given price on the screen.
-     *//*
+     */
+/**
+ * This method displays the given price on the screen.
+ *//*
+     */
+/*
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
-*/
+    */
 
-    /**
-     * This method displays the given text on the screen.
-     */
+    // This method displays the given text on the screen.
     private void displayMessage(String message) {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
+
 
     /**
      * Calculates the price of the order base on the current quantity
@@ -120,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         if (addChocolate) {
             pricePerCup += this.priceChocolate;
         }
-        return pricePerCup*quantity;
+        return pricePerCup * quantity;
     }
 
     /**
@@ -129,13 +151,22 @@ public class MainActivity extends AppCompatActivity {
      * @param totalPrice of order
      * @return message display
      */
-    private String createOrderSummary(Editable name, int totalPrice, boolean addWhippedCream, boolean addChocolate) {
-        String orderSummary = "Name: "+ name;
+    @SuppressLint("StringFormatInvalid")
+    private String createOrderSummary(String name, int totalPrice, boolean addWhippedCream, boolean addChocolate) {
+        /*
+        String orderSummary = "Name: " + name;
         orderSummary += "\nAdd whipped cream? " + addWhippedCream;
         orderSummary += "\nAdd chocolate? " + addChocolate;
         orderSummary += "\nQuantity: " + quantity;
         orderSummary += "\nTotal: $" + totalPrice;
         orderSummary += "\nThank you!";
+        */
+        String orderSummary = getString(R.string.order_summary_name, name);
+        orderSummary += "\n" + getString(R.string.order_summary_whipped_cream, addWhippedCream);
+        orderSummary += "\n"+ getString(R.string.order_summary_chocolate, addChocolate);
+        orderSummary += "\n" + getString(R.string.order_summary_quantity, quantity);
+        orderSummary += "\n" + getString(R.string.order_summary_price, totalPrice);
+        orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
 }

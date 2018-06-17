@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">JustJava</string>
+    <string name="name">Tên</string>
+    <string name="toppings">phủ thêm</string>
+    <string name="whipped_cream">Kem</string>
+    <string name="chocolate">Sô cô la</string>
+    <string name="quantity">Số lượng</string>
+    <string name="order">Đặt cafe</string>
+    <string name="initial_quantity_value">2</string>
+    <string name="less_1_cup">Bạn không thể đặt ít hơn 1 ly cafe.</string>
+    <string name="over_100_cups">Bạn không thể đặt hơn 100 ly cafe.</string>
+    <string name="thank_you">Cảm ơn!</string>
+    <string name="hint_order_summary">Miễn phí :))</string>
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="order_summary">Đơn hàng</string>
+
+    <!--
+    Name for the order summary. It will be shown in the format of "Name: Amy" where Amy is the
+    user's name. [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_name">Tên : <xliff:g example="Amy" id="name">%s</xliff:g></string>
+
+    <!--
+    Whipped cream topping for the order summary. It will be shown in the format of
+    "Add whipped cream? true" or "Add whipped cream? false". [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_whipped_cream">Thêm kem: <xliff:g example="true" id="addWhippedCream">%b</xliff:g></string>
+
+    <!--
+    Chocolate topping for the order summary. It will be shown in the format of
+    "Add chocolate? true" or "Add chocolate? false". [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_chocolate">Thêm sô cô la: <xliff:g example="false" id="addChocolate">%b</xliff:g></string>
+
+    <!--
+    Quantity of coffee cups for the order summary. It will be shown in the format of
+    "Quantity: 2", where 2 is the number of cups ordered. [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_quantity">Số lượng: <xliff:g example="10" id="quantity">%d</xliff:g></string>
+
+    <!--
+    Total price for the order summary. It will be shown in the format of
+    "Total: $10" where $10 is the price. [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_price">Tổng tiền: $<xliff:g example="15" id="totalPrice">%d</xliff:g></string>
+
+    <!--
+    Subject line for the order summary email. It will be in the format of
+    "Just Java order for Amy" where Amy is the user's name. [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_email_subject">JustJava đặt cafe cho <xliff:g example="Amy" id="name">%s</xliff:g></string>
+</resources>
