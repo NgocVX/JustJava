@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorGreen">#00E676</color>
+
+    <color name="colorPrimaryJustJava">#4CAF50</color>
+    <color name="colorPrimaryDarkJustJava">#388E3C</color>
+    <color name="colorAccentJustJava">#448AFF</color>
+    <color name="colorPrimaryLightJustJava">#C8E6C9</color>
 </resources>

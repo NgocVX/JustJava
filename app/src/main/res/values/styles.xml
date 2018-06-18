@@ -5,7 +5,24 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorGreen</item>
+    </style>
+
+    <!-- Customize application theme. -->
+    <style name="JustJavaTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryJustJava</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkJustJava</item>
+        <item name="colorAccent">@color/colorAccentJustJava</item>
+    </style>
+
+    <!-- style for TextView -->
+    <style name="HeaderTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
 </resources>
